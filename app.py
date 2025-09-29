@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -6,14 +6,7 @@ app = Flask(__name__)
 users = {"alice": "12345"}  # username: password
 messages = []  # liste de messages (dictionnaires)
 
-@app.route("/")
-def login_page():
-     return render_template("login.html")
-
-@app.route("/home")
-def home_page():
-    return render_template("home.html")
-
+# Route LOGIN (POST JSON)
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
@@ -23,11 +16,12 @@ def login():
         return jsonify({"message": "Login success", "username": username}), 200
     return jsonify({"error": "Invalid credentials"}), 401
 
+# Route GET MESSAGES
 @app.route("/messages", methods=["GET"])
 def get_messages():
-    # Retourne les 10 derniers messages (ordre antéchronologique)
-    return jsonify(messages[::-1][:10])
+    return jsonify(messages[::-1][:10]), 200
 
+# Route POST MESSAGE
 @app.route("/messages", methods=["POST"])
 def post_message():
     data = request.json
