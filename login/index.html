@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Mini Twitter</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <script>
+    async function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("https://<id>.execute-api.eu-west-1.amazonaws.com/dev/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({username, password})
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Login réussi ! Bienvenue " + data.username);
+      } else {
+        alert("Erreur login : " + (data.error || res.status));
+      }
+    }
+  </script>
+</body>
+</html>
