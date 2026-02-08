@@ -1,3 +1,7 @@
+# Lancer le porjet
+
+C:\Tools\flutter\bin\flutter.bat run -d chrome
+
 # chti_face_bouc
 
 A new Flutter project.

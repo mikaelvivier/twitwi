@@ -24,3 +24,9 @@ String likesKey = 'likes';
 String fromKey = 'from';
 String isReadKey = 'read';
 String postIdKey = 'postID';
+
+// Comment fields
+String commentIdKey = 'commentID';
+String commentTextKey = 'commentText';
+String commentDateKey = 'commentDate';
+String commentMemberIdKey = 'commentMemberID';
